@@ -18,4 +18,4 @@ ENV GOPATH="/opt/go/"
 RUN go get golang.org/x/tour/gotour
 
 EXPOSE 3999
-CMD ["/bin/sh", "-c", "$GOPATH/bin/gotour -http=0:3999"]
+CMD ["/bin/sh", "-c", "$GOPATH/bin/gotour -http=`ifconfig eth0 | awk '/inet addr/{print substr($2,6)}'`:3999"]
